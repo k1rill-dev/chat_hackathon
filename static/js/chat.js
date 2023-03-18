@@ -29,23 +29,57 @@ socket.onmessage = function(e){
                                                                 <p class="bg-success p-2 mt-2 mr-5 shadow-sm text-white float-right rounded">${data.message}</p>
                                                                 </td>
                                                             </tr>`
+
+
+    }else{
+    if(data.type_msg == 'file') {
+                    document.querySelector('#chat-body').innerHTML += `<tr>
+  <td>
+    <a href='/static/${data.message}' download=''  class="bg-success p-2 mt-2 mr-5 shadow-sm text-white float-left rounded">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark" viewBox="0 0 16 16">
+  <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+</svg> ${data.message}</a>
+  </td>                                                          </tr>`
+
+
+
+
+
+
     }else{
         document.querySelector('#chat-body').innerHTML += `<tr>
                                                                 <td>
                                                                 <p class="bg-primary p-2 mt-2 mr-5 shadow-sm text-white float-left rounded">${data.message}</p>
                                                                 </td>
                                                             </tr>`
+         }
     }
 }
 
 document.querySelector('#chat-message-submit').onclick = function(e){
     const message_input = document.querySelector('#message_input');
+    console.log('234')
     const message = message_input.value;
 
     socket.send(JSON.stringify({
+        'type_msg':'text',
         'message':message,
         'username':message_username
     }));
 
     message_input.value = '';
+}
+
+document.querySelector('#chat-file-submit').onclick = function(e){
+
+    const message_input = document.querySelector('#id_file');
+    const message = message_input.value;
+    var new_str = message.split('\\').pop();
+
+    socket.send(JSON.stringify({
+        'type_msg':'file',
+        'message': new_str,
+        'username':message_username
+    }));
+    window.location.reload();
 }

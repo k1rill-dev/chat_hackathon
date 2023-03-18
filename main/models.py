@@ -15,7 +15,7 @@ class User(AbstractUser):
     email = models.EmailField(_("email address"), unique=True)
     department = models.ForeignKey('Department', on_delete=models.CASCADE, verbose_name='Отдел', null=True, blank=True)
     position = models.ForeignKey('Position', on_delete=models.CASCADE, verbose_name='Должность', null=True, blank=True)
-
+    key_aes = models.CharField('Key Aes', null=True, max_length=100)
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ['username']
 
