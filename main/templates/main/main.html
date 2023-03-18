@@ -33,7 +33,23 @@
                     <figure class="carousel__figure">
                         <img
                                 class="carousel__item__image"
-                                src="http://weknowyourdreams.com/images/grey/grey-09.jpg"
+                                src="{{ fp.picture.url }}"
+                        />
+                    </figure>
+                </li>
+                <li class="carousel__item">
+                    <figure class="carousel__figure">
+                        <img
+                                class="carousel__item__image"
+                                src="{{ sp.picture.url }}"
+                        />
+                    </figure>
+                </li>
+                <li class="carousel__item">
+                    <figure class="carousel__figure">
+                        <img
+                                class="carousel__item__image"
+                                src="{{ tp.picture.url }}"
                         />
                     </figure>
                 </li>
@@ -49,41 +65,41 @@
 </div>
 <div class="row">
     <div class="column">
-        <div class="news1" style="background-image:url('http://ant.ritm.media/pic/avatars/bf265d60e5914275/88a489777847abe4/1654357409.jpg');">
+        <div class="news1" style="background-image:url('{{ fp.picture.url }}');">
             <div class="hidden-element1">
-                <h1>Этого дня ждали все</h1>
-                <h3>УРА!</h3>
+                <h1>{{ fir.body }}</h1>
+                <h3>{{ fir.author.full_name }}!</h3>
             </div>
-            <p>К нам в штат сотрудников пришла Милана Хаметова!</p></div>
-        <div class="news2" style="background-image:url('{% static "main/img/37cf85e1924d655e93d4d8d596d40ae9.jpg" %}');">
+            <p>{{ fir.title}}</p></div>
+        <div class="news2" style="background-image:url('{{ sp.picture.url }}');">
             <div class="hidden-element2">
-                <h1>Этого дня ждали все</h1>
-                <h3>УРА!</h3>
+                <<h1>{{ sec.body }}</h1>
+                <h3>{{ sec.author.full_name }}!</h3>
             </div>
-            <p>АНГЕЛ СПУСТИТСЯ С НЕБЕС И ВСЕХ НАС СЪЕСТ</p></div>
-        <div class="news3" style="background-image:url('https://p16-sg.tiktokcdn.com/aweme/720x720/tos-alisg-avt-0068/acb06877660b5b8b80c03e86611506f1.jpeg');">
+            <p>{{ sec.title}}</p></div>
+        <div class="news3" style="background-image:url('{{ tp.picture.url }}');">
             <div class="hidden-element3">
-                <h1>Этого дня ждали все</h1>
-                <h3>УРА!</h3>
+                <h1>{{ thrd.body }}</h1>
+                <h3>{{ thrd.author.full_name }}!</h3>
             </div>
-            <p>В ТВОИХ ГЛАЗАХ ВСЕЛЕНСКАЯ ПЕЧАЛЬ</p></div>
+            <p>{{ thrd.title }}</p></div>
     </div>
 </div>
 
 
 <div class="footer">
     <ul style="list-style: none;">
-        <li><a href=#>Контакты</a></li>
-        <li><a href=#>Контакты</a></li>
-        <li><a href=#>Контакты</a></li>
+        <li><a href=#>Домой</a></li>
+        <li><a href=#>Github проекта</a></li>
+        <li><a href=#>Made by FVBB</a></li>
     </ul>
     <ul style="list-style: none;">
+        <li><a href=#>Информация</a></li>
         <li><a href=#>Контакты</a></li>
-        <li><a href=#>Контакты</a></li>
-        <li><a href=#>Контакты</a></li>
+        <li><a href=#>Пользовательское соглашение</a></li>
     </ul>
     <ul style="list-style: none;">
-        <li><a href=#>Контакты</a></li>
+        <li><a href=#>Чат</a></li>
         <li><a href=#>Контакты</a></li>
         <li><a href=#>Контакты</a></li>
     </ul>

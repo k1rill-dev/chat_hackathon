@@ -1,7 +1,7 @@
 from django.contrib.auth.hashers import check_password
-from .models import User
+from .models import User, News, PictureForNews
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, UpdateUserForm, UpdatePermissions
 
@@ -11,7 +11,16 @@ def index_main(request):
         user = User.objects.get(id=request.user.id)
     except User.DoesNotExist:
         return redirect('login')
-    return render(request, 'main/main.html', {'request': request, 'user': user})
+
+    fir, sec, thrd = News.objects.all()[:3]
+    fp, sp, tp = PictureForNews.objects.get(news=fir), PictureForNews.objects.get(news=sec), PictureForNews.objects.get(news=thrd)
+
+    return render(request, 'main/main.html', {'request': request, 'user': user, 'fir': fir,
+                                              'sec': sec,
+                                              'thrd': thrd,
+                                              'fp': fp,
+                                              'sp': sp,
+                                              'tp': tp})
 
 
 def view_my_profile(request):

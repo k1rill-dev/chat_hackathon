@@ -17,7 +17,11 @@ def index(request):
 
 def chatPage(request, username):
     user_obj = User.objects.get(username=username)
-    user_access = User.objects.get(username=request.user.username).position.access_level
+    # user_access = User.objects.get(username=request.user.username).position.access_level
+    if request.user.is_superuser:
+        user_access = 1
+    else:
+        user_access = request.user.position.access_level
     users = User.objects.exclude(username=request.user.username)
     if request.method == 'POST':
         form = ResumeForm(request.POST, request.FILES)

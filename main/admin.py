@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, News, Position, Department
+from .models import User, News, Position, Department, PictureForNews
 from django.contrib.auth.admin import UserAdmin
 from django import forms
 
@@ -27,4 +27,5 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(News)
 admin.site.register(Position)
+admin.site.register(PictureForNews)
 admin.site.register(Department)

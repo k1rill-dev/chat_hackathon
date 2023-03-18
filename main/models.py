@@ -38,7 +38,7 @@ class Position(models.Model):
         return f'{self.name} с {self.access_level} уровнем доступа'
 
 
-class PictureForNews:
+class PictureForNews(models.Model):
     picture = models.ImageField(upload_to='pictures_news/%Y/%m/%d/', blank=True, null=True,
                                 default='Нет картинки',
                                 verbose_name='Изображение')
