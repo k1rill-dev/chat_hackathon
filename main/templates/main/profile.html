@@ -6,11 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
     <link rel="stylesheet" href="{% static 'main/css/profile_style.css' %}">
+    <link rel="stylesheet"  href="{% static '/css/main_style.css' %}">
+    <link rel="stylesheet"  href="{% static '/css/media.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
 </head>
 <body>
+<div class="header">
+    <figure>
+        <a href=#>
+            <img src="{{ user.avatar.url }}"
+                 alt="Avatar" class="avatar">
+            <figcaption>{{ user.first_name }} {{ user.last_name }}</figcaption>
+        </a>
+    </figure>
+
+    <a href=#>Corporative Chat</a>
+    <a href={% url 'home' %}>
+        <div class="navbar">
+            <div class="button">
+                <i class="fas fa-comment" ></i>
+                <span class="button__badge">5</span>
+            </div>
+        </div>
+    </a>
+</div>
 <div id="openModal" class="modal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -47,6 +68,9 @@
 
         <div class="interests">
             <span class="interests_item">Отдел менеджмента</span>
+        </div>
+        <div class="interests">
+            <span class="interests_item">Уровень доступа: 2</span>
         </div>
     </div>
 

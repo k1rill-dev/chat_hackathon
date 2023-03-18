@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet"  href="{% static '/css/main_style.css' %}">
     <link rel="stylesheet" href="{% static '/css/media.css' %}">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -21,7 +23,12 @@
 
     <a href=#>Corporative Chat</a>
     <a href={% url 'home' %}>
-        <img src="{% static '/img/chat-round-svgrepo-com.png' %}" alt="Avatar" class="avatar">
+        <div class="navbar">
+            <div class="button">
+                <i class="fas fa-comment" ></i>
+                <span class="button__badge">5</span>
+            </div>
+        </div>
     </a>
 </div>
 
@@ -51,20 +58,23 @@
     <div class="column">
         <div class="news1" style="background-image:url('http://ant.ritm.media/pic/avatars/bf265d60e5914275/88a489777847abe4/1654357409.jpg');">
             <div class="hidden-element1">
+                <img src='http://ant.ritm.media/pic/avatars/bf265d60e5914275/88a489777847abe4/1654357409.jpg'>
                 <h1>Этого дня ждали все</h1>
-                <h3>УРА!</h3>
+                <h3>Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации "Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст.." Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам "lorem ipsum" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты).</h3>
             </div>
             <p>К нам в штат сотрудников пришла Милана Хаметова!</p></div>
         <div class="news2" style="background-image:url('{% static "main/img/37cf85e1924d655e93d4d8d596d40ae9.jpg" %}');">
             <div class="hidden-element2">
+                <img src='{% static "main/img/37cf85e1924d655e93d4d8d596d40ae9.jpg" %}'>
                 <h1>Этого дня ждали все</h1>
-                <h3>УРА!</h3>
+                <h3>Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации "Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст.." Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам "lorem ipsum" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты).</h3>
             </div>
             <p>АНГЕЛ СПУСТИТСЯ С НЕБЕС И ВСЕХ НАС СЪЕСТ</p></div>
         <div class="news3" style="background-image:url('https://p16-sg.tiktokcdn.com/aweme/720x720/tos-alisg-avt-0068/acb06877660b5b8b80c03e86611506f1.jpeg');">
             <div class="hidden-element3">
+                <img src='https://p16-sg.tiktokcdn.com/aweme/720x720/tos-alisg-avt-0068/acb06877660b5b8b80c03e86611506f1.jpeg'>
                 <h1>Этого дня ждали все</h1>
-                <h3>УРА!</h3>
+                <h3>Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации "Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст.." Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам "lorem ipsum" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты).</h3>
             </div>
             <p>В ТВОИХ ГЛАЗАХ ВСЕЛЕНСКАЯ ПЕЧАЛЬ</p></div>
     </div>
@@ -73,19 +83,19 @@
 
 <div class="footer">
     <ul style="list-style: none;">
-        <li><a href=#>Контакты</a></li>
-        <li><a href=#>Контакты</a></li>
-        <li><a href=#>Контакты</a></li>
+        <li><a href=#>О нас</a></li>
+        <li><a href=#> </a></li>
+        <li><a href=#> </a></li>
     </ul>
     <ul style="list-style: none;">
-        <li><a href=#>Контакты</a></li>
-        <li><a href=#>Контакты</a></li>
-        <li><a href=#>Контакты</a></li>
+        <li><a href=#>ВКОНТАКТИК</a></li>
+        <li><a href=#>ТЕЛЕРАММЧИК</a></li>
+        <li><a href=#>АСЬКА</a></li>
     </ul>
     <ul style="list-style: none;">
-        <li><a href=#>Контакты</a></li>
-        <li><a href=#>Контакты</a></li>
-        <li><a href=#>Контакты</a></li>
+        <li><a href=#>+79052281488</a></li>
+        <li><a href=#>ул. Гофмана, д. 7/8</a></li>
+        <li><a href=#>nill_kiggers@obama.com</a></li>
     </ul>
 </div>
 
