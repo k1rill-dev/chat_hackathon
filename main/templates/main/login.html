@@ -10,7 +10,7 @@
 <body>
 <div class="login-page">
     <div class="form">
-        <form class="login-form">
+        <form class="login-form" method="post">
             {% csrf_token %}
             {{ form.email }}
             {{ form.password }}

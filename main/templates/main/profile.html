@@ -11,29 +11,34 @@
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
 </head>
 <body>
-<div id="openModal" class="modal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Сменить аватар</h3>
-                <a href="#close" title="Close" class="close">×</a>
-            </div>
-            <div class="modal-body">
-                <div class="form-file">
-                    <input type="file" class="form-file-input" id="customFile" style="display:none;">
-                    <label class="form-file-label" for="customFile">
-                        <span class="form-file-text">Выбрать файл</span>
-                        <span class="form-file-button"></span>
-                    </label>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+{#<div id="openModal" class="modal">#}
+{#    <div class="modal-dialog">#}
+{#        <div class="modal-content">#}
+{#            <div class="modal-header">#}
+{#                <h3 class="modal-title">Сменить аватар</h3>#}
+{#                <a href="#close" title="Close" class="close">×</a>#}
+{#            </div>#}
+{#            <div class="modal-body">#}
+{#                <form method="post">#}
+{#                    <div class="form-file">#}
+{#                        <input type="file" class="form-file-input" id="customFile" style="display:none;">#}
+{#                        {% csrf_token %}#}
+{#                        {{ aform.avatar }}#}
+{#                        <label class="form-file-label" for="customFile">#}
+{#                            <span class="form-file-text">Выбрать файл</span>#}
+{#                            <span class="form-file-button"></span>#}
+{#                        </label>#}
+{#                        <button type="submit">Изменить</button>#}
+{#                    </div>#}
+{#                </form>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
 <section class="profile_container">
     <div class="profile_img_section">
         <img class="profile_img-LG"
-             src="https://cdn.idntimes.com/content-images/community/2020/10/122163576-262420488513552-863075192792965334-n-f95e3dd6d25d3618eb9f1b3b9bcc5796.jpg"/>
+             src="{{ request.user.avatar.url }}"/>
         <div class="flag_wrapper">
             <a href="#openModal"><img class="flag"
                                       src="https://banner2.cleanpng.com/20180501/tqq/kisspng-pencil-computer-icons-5ae92b6a883353.9725401515252304425579.jpg"
@@ -42,11 +47,11 @@
         </div>
     </div>
     <div class="profile_desc_section">
-        <h2>Сань Хуй Вынь</h2>
-        <h3>СТАЖЁР</h3>
+        <h2>{{ request.user.first_name }} {{ request.user.last_name }}</h2>
+        <h3>{{ request.user.position }}</h3>
 
         <div class="interests">
-            <span class="interests_item">Отдел менеджмента</span>
+            <span class="interests_item">{{ request.user.department }}</span>
         </div>
     </div>
 
@@ -64,17 +69,17 @@
         </li>
     </ul>
 </div>
-<form action="/action_page.php" method="post">
-
+<form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
     <div class="container" id="hidden-element">
-        <label for="uname"><b>Старый пароль</b></label>
-        <input type="text" required>
 
-        <label for="psw"><b>Новый пароль</b></label>
-        <input type="password" required>
+        {{ form.avatar }}
 
-        <label for="psw"><b>Новый пароль</b></label>
-        <input type="password" required>
+        {{ form.old_passwd }}
+
+        {{ form.passwd }}
+
+        {{ form.passwd1 }}
 
         <button type="submit">Изменить</button>
     </div>
