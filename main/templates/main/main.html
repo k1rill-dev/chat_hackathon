@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Главная страница</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'main/css/main_style.css' %}">
+
+</head>
+
+<body>
+<div class="header">
+        <figure>
+            <a href="{% url 'my_p' %}">
+                <img src="{{ user.avatar.url }}" alt="Avatar" class="avatar">
+                <figcaption >{{ request.user.first_name }} {{ request.user.last_name }}</figcaption>
+            </a>
+        </figure>
+        <h2>Corporative Chat</h2>
+        <img src="{% static 'main/img/chat-round-svgrepo-com.png' %}" alt="Avatar" class="avatar">
+</div>
+
+<div class="row">
+    <div class="column" style="background-color:#bbb;">
+        <div class="carousel">
+            <ul class="carousel__list">
+                <li class="carousel__item">
+                    <figure class="carousel__figure">
+                        <img
+                                class="carousel__item__image"
+                                src="http://weknowyourdreams.com/images/grey/grey-09.jpg"
+                        />
+                    </figure>
+                </li>
+                <li class="carousel__item">
+                    <figure class="carousel__figure">
+                        <img
+                                class="carousel__item__image"
+                                src="https://avatars.mds.yandex.net/i?id=78e7ee42661661649293ddb5c3a7c7c3-5507408-images-thumbs&ref=rim&n=33&w=256&h=150"
+                        />
+                    </figure>
+                </li>
+                <li class="carousel__item">
+                    <figure class="carousel__figure">
+                        <img
+                                class="carousel__item__image"
+                                src="https://loft-floor.ru/uploads/product/7532/loupe.jpg"
+                        />
+                </li>
+            </ul>
+            <button class="carousel__button carousel__button--prev"><</button>
+            <button class="carousel__button carousel__button--next">></button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="column" style="background-color:gray;">
+        <div class="news">
+        </div>
+        <div class="block">
+            <h2>Пример1</h2>
+        </div>
+        <div class="news">
+        </div>
+        <div class="news">
+        </div>
+    </div>
+</div>
+
+
+<div class="footer">
+    <h2>Github</h2>
+    <h2>VK</h2>
+    <h2>7-8</h2>
+</div>
+<script>
+function moveSlideshowToIndex (element, total, index) {
+  const n = index % total * -1
+  element.style.transform = `translateX(${n * 100}%)`;
+}
+
+
+function slideshow({ selector, initialIndex, autoscroll }) {
+  var current = initialIndex || 0;
+  const slideshow = document.querySelector(selector);
+  const slides = document.querySelector('.carousel__list');
+  const total = slideshow.querySelectorAll(".carousel__item").length
+
+  const prev = slideshow.querySelector(".carousel__button--prev");
+  const next = slideshow.querySelector(".carousel__button--next");
+
+  next.addEventListener('click', () => {
+    current = current + 1;
+    moveSlideshowToIndex(slides, total, current)
+  })
+
+  prev.addEventListener('click', () => {
+    current = current - 1;
+    moveSlideshowToIndex(slides, total, current)
+  })
+
+  if (!autoscroll) return;
+
+
+  setInterval(() => {
+    current = current + 1;
+    moveSlideshowToIndex(slides, total, current)
+  }, 3000)
+}
+
+slideshow({
+ selector: ".carousel",
+ autoscroll: true
+})
+</script>
+
+</body>
+</html>

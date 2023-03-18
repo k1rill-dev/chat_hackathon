@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="{% static 'main/css/profile_style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+</head>
+<body>
+<section class="profile_container">
+    <div class="profile_img_section">
+        <img class="profile_img-LG" src="{{ user.avatar.url }}" />
+        <div class="flag_wrapper">
+            <img class="flag" src="https://banner2.cleanpng.com/20180501/tqq/kisspng-pencil-computer-icons-5ae92b6a883353.9725401515252304425579.jpg" alt="South Korean Flag" />
+        </div>
+    </div>
+
+    <div class="profile_desc_section">
+        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+        <h3>{{ user.position }}</h3>
+        <div class="interests">
+            <span class="interests_item">{{ user.department }}</span>
+        </div>
+    </div>
+    <form enctype="multipart/form-data" method="post">
+             {% csrf_token %}
+             {{ form.as_p }}
+             <button type="submit">Сменить данные</button>
+     </form>
+
+</section>
+
+<div class="info">
+    <ul>
+        <li>
+            <div class="link_img_wrapper">
+                <img class="link_img" src="https://static.vecteezy.com/system/resources/previews/000/627/837/original/key-icon-symbol-sign-vector.jpg" alt="">
+            </div>
+            <p>сменить пароль</p>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
