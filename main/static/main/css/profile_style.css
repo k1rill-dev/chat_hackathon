@@ -42,7 +42,7 @@ h3 {
 	height: 400px;
 	width: 300px;
 	border-radius: 40px;
-
+    border: 5px solid blue;
 	object-fit: cover;
 	object-position: 50% 50%;
 
@@ -95,7 +95,7 @@ h3 {
 	background-color: #e6e6e6;
 	border-radius: 5px;
 
-	color: rgba(34, 34, 34, 0.5);
+	color: blue;
 }
 
 .info {
