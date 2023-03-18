@@ -8,9 +8,7 @@ class LoginForm(forms.Form):
 
 
 class UpdateUserForm(forms.Form):
-    avatar = forms.ImageField(widget=forms.FileInput, label='Фото профиля')
+    avatar = forms.ImageField(widget=forms.FileInput, required=False, label='Фото профиля')
     old_passwd = forms.CharField(widget=forms.PasswordInput, label='Текущий пароль')
     passwd = forms.CharField(widget=forms.PasswordInput, label='Новый пароль')
     passwd1 = forms.CharField(widget=forms.PasswordInput, label='Подтвердите пароль')
-
-
