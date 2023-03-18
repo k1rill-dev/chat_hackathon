@@ -5,6 +5,12 @@
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <style>
+    li {
+    list-style-type: none; /* Убираем маркеры */
+   }
+
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -17,15 +23,18 @@
         <div class="row">
             <div class="col-sm-4 contacts">
                 <div class="contact-table-scroll">
-                <input id="select" placeholder=""/>
+                <input id="select" style="margin-top: 10px; margin-left: 35px;" placeholder="Хз как написать"/>
 {#                        <tbody>#}
                             {% for user in users %}
 {#                            <tr>#}
                                 <ul class="table table-hover" id="list">
 {#                                    <td>#}
 {#                                    </td>#}
-                                    <a href="{% url 'chat' username=user.username%}"><li class="element"><img src="{{ user.avatar.url }}" alt="" class="profile-image rounded-circle">
-                                        {{user.first_name}} {{ user.last_name }}</li></a>
+                                    <li class="element"><a href="{% url 'v_profile' user.pk%}"><img src="{{ user.avatar.url }}" alt="" class="profile-image rounded-circle"></a><a href="{% url 'chat' username=user.username%}">
+                                        {{user.first_name}} {{ user.last_name }}</a>
+                                        <p>Отдел {{ user.department }} на должности {{ user.position }}</p>
+                                    </li>
+
                                 </ul>
                             </tr>
                             {% endfor %}

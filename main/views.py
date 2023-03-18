@@ -3,7 +3,7 @@ from .models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm, UpdateUserForm
+from .forms import LoginForm, UpdateUserForm, UpdatePermissions
 
 
 def index_main(request):
@@ -35,7 +35,7 @@ def view_my_profile(request):
                 return redirect('my_p')
     else:
         form = UpdateUserForm()
-    return render(request, 'main/profile.html', {'request': request, 'user': user, 'form': form})
+    return render(request, 'main/my_profile.html', {'request': request, 'user': user, 'form': form})
 
 
 def user_login(request):
@@ -63,25 +63,33 @@ def view_another_profile(request, pk):
         user = User.objects.get(pk=pk)
     except User.DoesNotExist:
         return HttpResponse('дурак?')
+
+    if request.user.is_superuser or request.user.position.access_level < user.position.access_level:
+        if request.method == 'POST':
+            form = UpdatePermissions(request.POST)
+            if form.is_valid():
+                cd = form.cleaned_data
+                print(cd)
+        else:
+            form = UpdatePermissions()
+
+        return render(request, 'main/changable_profile.html', {'form': form, 'user': user, 'f': 1})
+
+    elif user.is_superuser:
+        return HttpResponse('батя этого сервера - он, нет прав у тебя другалек')
+
+    elif request.user.position.access_level > user.position.access_level:
+        return HttpResponse('У вас недостаточно прав для осуществления')
+
+    else:
+        print('збс')
+        return render(request, 'main/changable_profile.html', {'user': user, 'f': 2})
+
+
+def readonly_profile(request, pk):
     try:
-        user_me = User.objects.get(pk=request.user.id)
+        user = User.objects.get(pk=pk)
     except User.DoesNotExist:
         return HttpResponse('дурак?')
 
-    print(user_me.position.access_level)
-    print(user.position.access_level)
-
-    if user_me.is_superuser:
-        print('суперюзер(я)')
-        return HttpResponse('батя этого сервера - я')
-
-    elif user.is_superuser:
-        print('суперюзер(не я)')
-        return HttpResponse('батя этого сервера - он')
-
-    elif user_me.position.access_level > user.position.access_level:
-        print('НЕТ ПРАВ!!!')
-        return HttpResponse('У вас недостаточно прав для осуществления')
-    else:
-        print('збс')
-        return HttpResponse('збс')
+    return render(request, 'main/readonly_profile.html', {'user': user})

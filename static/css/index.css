@@ -3,6 +3,10 @@
   height: 15vh;
 }
 
+li {
+  list-style-type: none;
+}
+
 .back-main {
   background-color: #d9dbd5;
   height: 85vh;

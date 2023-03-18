@@ -11,34 +11,10 @@
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
 </head>
 <body>
-{#<div id="openModal" class="modal">#}
-{#    <div class="modal-dialog">#}
-{#        <div class="modal-content">#}
-{#            <div class="modal-header">#}
-{#                <h3 class="modal-title">Сменить аватар</h3>#}
-{#                <a href="#close" title="Close" class="close">×</a>#}
-{#            </div>#}
-{#            <div class="modal-body">#}
-{#                <form method="post">#}
-{#                    <div class="form-file">#}
-{#                        <input type="file" class="form-file-input" id="customFile" style="display:none;">#}
-{#                        {% csrf_token %}#}
-{#                        {{ aform.avatar }}#}
-{#                        <label class="form-file-label" for="customFile">#}
-{#                            <span class="form-file-text">Выбрать файл</span>#}
-{#                            <span class="form-file-button"></span>#}
-{#                        </label>#}
-{#                        <button type="submit">Изменить</button>#}
-{#                    </div>#}
-{#                </form>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
 <section class="profile_container">
     <div class="profile_img_section">
         <img class="profile_img-LG"
-             src="{{ request.user.avatar.url }}"/>
+             src="{{ user.avatar.url }}"/>
         <div class="flag_wrapper">
             <a href="#openModal"><img class="flag"
                                       src="https://banner2.cleanpng.com/20180501/tqq/kisspng-pencil-computer-icons-5ae92b6a883353.9725401515252304425579.jpg"
@@ -47,18 +23,61 @@
         </div>
     </div>
     <div class="profile_desc_section">
-        <h2>{{ request.user.first_name }} {{ request.user.last_name }}</h2>
-        <form method="post">
-            <h3>{{ request.user.position }}</h3>
+        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+        <h3>{{ user.position }}</h3>
 
             <div class="interests">
-                <span class="interests_item">{{ request.user.department }}</span>
+                <span class="interests_item">{{ user.department }}</span>
             </div>
-        </form>
-
     </div>
 
+
 </section>
+
+
+{% if f == 1 %}
+<div class="info">
+    <ul>
+        <li>
+            <div class="link_img_wrapper">
+                <img id="click-to-hide1" class="link_img"
+                     src="https://static.vecteezy.com/system/resources/previews/000/627/837/original/key-icon-symbol-sign-vector.jpg"
+                     alt="">
+            </div>
+            <p id="click-to-hide">Сменить данные</p>
+        </li>
+    </ul>
+</div>
+
+<form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <div class="container" id="hidden-element">
+
+        {{ form.position }}
+
+        {{ form.department }}
+
+        <button type="submit">Изменить</button>
+    </div>
+
+    <script>
+  document.addEventListener("DOMContentLoaded", hiddenCloseclick());
+  document.getElementById('click-to-hide').addEventListener("click", hiddenCloseclick);
+  document.getElementById('click-to-hide1').addEventListener("click", hiddenCloseclick);
+	function hiddenCloseclick() {
+	let x = document.getElementById('hidden-element');
+      if (x.style.display == "none"){
+	  x.style.display = "block";
+	  } else {
+	 x.style.display = "none"}
+    };
+
+
+
+    </script>
+</form>
+
+{% endif %}
 </body>
 
 </html>

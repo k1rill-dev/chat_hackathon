@@ -5,7 +5,6 @@ from chat.settings import MEDIA_ROOT
 from chats.forms import ResumeForm
 from chats.models import ChatModel
 
-# Create your views here.
 
 
 User = get_user_model()
@@ -18,7 +17,7 @@ def index(request):
 
 def chatPage(request, username):
     user_obj = User.objects.get(username=username)
-    user_access = User.objects.get(username=request.user.username).position_id
+    user_access = User.objects.get(username=request.user.username).position.access_level
     users = User.objects.exclude(username=request.user.username)
     if request.method == 'POST':
         form = ResumeForm(request.POST, request.FILES)

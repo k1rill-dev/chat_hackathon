@@ -3,22 +3,28 @@ from .models import User, News, Position, Department
 from django.contrib.auth.admin import UserAdmin
 from django import forms
 
+
 class CustomUserAdmin(UserAdmin):
-    add_fieldsets = (
+    model = User
+    list_display = ('first_name', 'last_name', 'position', 'department', 'email')
+    list_display_links = ('first_name', 'last_name', 'position', 'department', 'email')
+    fieldsets = (
         (
             None,
             {
                 "classes": ("wide",),
-                "fields": ("username", "password1", "password2",
+                "fields": ("username", "password",
                            "first_name", "last_name", "email",
-                           "is_active", "avatar", "department", "position",
-                           "groups"),
+                           "is_active", "avatar", "department", "position",),
             },
         ),
     )
+    add_fieldsets = UserAdmin.add_fieldsets + (
+        (None, {'fields': ('position', 'department', 'email')}),
+    )
+
 
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(News)
-# admin.site.register(User)
 admin.site.register(Position)
 admin.site.register(Department)
