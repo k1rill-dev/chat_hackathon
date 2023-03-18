@@ -35,7 +35,7 @@ def view_my_profile(request):
                 return redirect('my_p')
     else:
         form = UpdateUserForm()
-    return render(request, 'main/profile.html', {'request': request, 'user': user, 'form': form})
+    return render(request, 'main/my_profile.html', {'request': request, 'user': user, 'form': form})
 
 
 def user_login(request):
@@ -68,19 +68,13 @@ def view_another_profile(request, pk):
     except User.DoesNotExist:
         return HttpResponse('дурак?')
 
-    print(user_me.position.access_level)
-    print(user.position.access_level)
-
     if user_me.is_superuser:
-        print('суперюзер(я)')
         return HttpResponse('батя этого сервера - я')
 
     elif user.is_superuser:
-        print('суперюзер(не я)')
-        return HttpResponse('батя этого сервера - он')
+        return HttpResponse('батя этого сервера - он, нет прав у тебя другалек')
 
     elif user_me.position.access_level > user.position.access_level:
-        print('НЕТ ПРАВ!!!')
         return HttpResponse('У вас недостаточно прав для осуществления')
     else:
         print('збс')

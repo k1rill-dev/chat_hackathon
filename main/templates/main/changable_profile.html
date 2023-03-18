@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="{% static 'main/css/profile_style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
+</head>
+<body>
+{#<div id="openModal" class="modal">#}
+{#    <div class="modal-dialog">#}
+{#        <div class="modal-content">#}
+{#            <div class="modal-header">#}
+{#                <h3 class="modal-title">Сменить аватар</h3>#}
+{#                <a href="#close" title="Close" class="close">×</a>#}
+{#            </div>#}
+{#            <div class="modal-body">#}
+{#                <form method="post">#}
+{#                    <div class="form-file">#}
+{#                        <input type="file" class="form-file-input" id="customFile" style="display:none;">#}
+{#                        {% csrf_token %}#}
+{#                        {{ aform.avatar }}#}
+{#                        <label class="form-file-label" for="customFile">#}
+{#                            <span class="form-file-text">Выбрать файл</span>#}
+{#                            <span class="form-file-button"></span>#}
+{#                        </label>#}
+{#                        <button type="submit">Изменить</button>#}
+{#                    </div>#}
+{#                </form>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+<section class="profile_container">
+    <div class="profile_img_section">
+        <img class="profile_img-LG"
+             src="{{ request.user.avatar.url }}"/>
+        <div class="flag_wrapper">
+            <a href="#openModal"><img class="flag"
+                                      src="https://banner2.cleanpng.com/20180501/tqq/kisspng-pencil-computer-icons-5ae92b6a883353.9725401515252304425579.jpg"
+                                      alt="South Korean Flag"
+            /></a>
+        </div>
+    </div>
+    <div class="profile_desc_section">
+        <h2>{{ request.user.first_name }} {{ request.user.last_name }}</h2>
+        <form method="post">
+            <h3>{{ request.user.position }}</h3>
+
+            <div class="interests">
+                <span class="interests_item">{{ request.user.department }}</span>
+            </div>
+        </form>
+
+    </div>
+
+</section>
+</body>
+
+</html>
