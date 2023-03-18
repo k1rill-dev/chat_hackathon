@@ -1,20 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Rubik:wght@300&display=swap');
+
 * {
   box-sizing: border-box;
+  border-radius:15px;
+  font-weight:bold;
+  font-family: 'Rubik', sans-serif;
+}
+html {
+width:100%;
+height:100%;
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
 
 /* Style the header */
 .header {
-  background-color: #f1f1f1;
   padding: 30px;
   text-align: center;
   display:flex;
   flex-direction: row;
   justify-content: space-between;
-  font-size: 15px;
+  font-size: 35px;
+  border:3px solid blue;
+}
+
+.header a, figure {
+margin: auto;
 }
 
 /* Container for flexboxes */
@@ -30,14 +40,17 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,0.9122023809523809) 0%, rgba(6,84,171,1) 0%, rgba(0,212,255,1) 100%);;
   flex: 1;
   padding: 10px;
+  width:100%;
   margin-top:15px;
+
 }
 
 /* Style the footer */
 .footer {
-  background-color:gray;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,0.9122023809523809) 0%, rgba(6,84,171,1) 0%, rgba(0,212,255,1) 100%);;
   padding: 10px;
   text-align: center;
   margin-top:10px;
@@ -46,23 +59,31 @@ body {
   justify-content: space-between;
 }
 
-.footer h2 {
+.footer ul, .footer a {
+    font-size:25px;
     margin:auto;
+    color:white;
 }
 
-.news{
-    width:400px;
-    height:600px;
-    background-color:black;
-    margin: auto;
-}
-.block{
-    width:800px;
+.news1,.news2,.news3{
+    width:100%;
     height:100%;
-    background-color:black;
-    margin: auto;
-    color:white;
-    display:none;
+    margin-right:10px;
+    margin-left:10px;
+    color: white;
+    text-align:center;
+    background-image:url('http://ant.ritm.media/pic/avatars/bf265d60e5914275/88a489777847abe4/1654357409.jpg');
+    background-size: cover;
+}
+
+
+.news1 p, .news2 p, .news3 p {
+    font-size:100%;
+    margin-top:50%;
+    margin-left:auto;
+    margin-right:auto;
+    width:90%;
+
 }
 
 
@@ -113,10 +134,13 @@ body {
 .carousel__button {
   position: absolute;
   top: 50%;
-  background: white;
-  border-radius: none;
-  border-color: none;
-}
+  width:30px;
+  height:30px;
+  color: black;
+  border: 2px solid #e7e7e7;
+  border-radius:10px;
+  }
+
 
 .carousel__button--prev {
   left: 0;
@@ -130,3 +154,26 @@ body {
   height: 50px;
   border-radius: 30%;
 }
+
+a, figcaption { text-decoration: none;
+color:black;
+}
+
+
+.hidden-element1, .hidden-element2, .hidden-element3{
+  width: calc(100% - 35px);
+  height: 60%;
+  z-index:1;
+  position:absolute;
+  border: 1px dotted red;
+  background-color:white;
+  color:black;
+  display:none;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+
+li {
+    margin-bottom: 0.4em; /* Расстояние снизу */
+   }

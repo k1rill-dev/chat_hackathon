@@ -7,28 +7,48 @@
     <title>Profile Page</title>
     <link rel="stylesheet" href="{% static 'main/css/profile_style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
 </head>
 <body>
+<div id="openModal" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Сменить аватар</h3>
+                <a href="#close" title="Close" class="close">×</a>
+            </div>
+            <div class="modal-body">
+                <div class="form-file">
+                    <input type="file" class="form-file-input" id="customFile" style="display:none;">
+                    <label class="form-file-label" for="customFile">
+                        <span class="form-file-text">Выбрать файл</span>
+                        <span class="form-file-button"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <section class="profile_container">
     <div class="profile_img_section">
-        <img class="profile_img-LG" src="{{ user.avatar.url }}" />
+        <img class="profile_img-LG"
+             src="https://cdn.idntimes.com/content-images/community/2020/10/122163576-262420488513552-863075192792965334-n-f95e3dd6d25d3618eb9f1b3b9bcc5796.jpg"/>
         <div class="flag_wrapper">
-            <img class="flag" src="https://banner2.cleanpng.com/20180501/tqq/kisspng-pencil-computer-icons-5ae92b6a883353.9725401515252304425579.jpg" alt="South Korean Flag" />
+            <a href="#openModal"><img class="flag"
+                                      src="https://banner2.cleanpng.com/20180501/tqq/kisspng-pencil-computer-icons-5ae92b6a883353.9725401515252304425579.jpg"
+                                      alt="South Korean Flag"
+            /></a>
         </div>
     </div>
-
     <div class="profile_desc_section">
-        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-        <h3>{{ user.position }}</h3>
+        <h2>Сань Хуй Вынь</h2>
+        <h3>СТАЖЁР</h3>
+
         <div class="interests">
-            <span class="interests_item">{{ user.department }}</span>
+            <span class="interests_item">Отдел менеджмента</span>
         </div>
     </div>
-    <form enctype="multipart/form-data" method="post">
-             {% csrf_token %}
-             {{ form.as_p }}
-             <button type="submit">Сменить данные</button>
-     </form>
 
 </section>
 
@@ -36,11 +56,45 @@
     <ul>
         <li>
             <div class="link_img_wrapper">
-                <img class="link_img" src="https://static.vecteezy.com/system/resources/previews/000/627/837/original/key-icon-symbol-sign-vector.jpg" alt="">
+                <img id="click-to-hide1" class="link_img"
+                     src="https://static.vecteezy.com/system/resources/previews/000/627/837/original/key-icon-symbol-sign-vector.jpg"
+                     alt="">
             </div>
-            <p>сменить пароль</p>
+            <p id="click-to-hide">сменить пароль</p>
         </li>
     </ul>
 </div>
+<form action="/action_page.php" method="post">
+
+    <div class="container" id="hidden-element">
+        <label for="uname"><b>Старый пароль</b></label>
+        <input type="text" required>
+
+        <label for="psw"><b>Новый пароль</b></label>
+        <input type="password" required>
+
+        <label for="psw"><b>Новый пароль</b></label>
+        <input type="password" required>
+
+        <button type="submit">Изменить</button>
+    </div>
+
+    <script>
+  document.addEventListener("DOMContentLoaded", hiddenCloseclick());
+  document.getElementById('click-to-hide').addEventListener("click", hiddenCloseclick);
+  document.getElementById('click-to-hide1').addEventListener("click", hiddenCloseclick);
+	function hiddenCloseclick() {
+	let x = document.getElementById('hidden-element');
+      if (x.style.display == "none"){
+	  x.style.display = "block";
+	  } else {
+	 x.style.display = "none"}
+    };
+
+
+
+    </script>
+</form>
 </body>
+
 </html>
