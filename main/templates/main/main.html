@@ -18,7 +18,12 @@
             </a>
         </figure>
         <h2>Corporative Chat</h2>
-        <img src="{% static 'main/img/chat-round-svgrepo-com.png' %}" alt="Avatar" class="avatar">
+        <div class="navbar">
+            <div class="button">
+                <i class="fas fa-comment" ></i>
+                <span class="button__badge">5</span>
+            </div>
+        </div>
 </div>
 
 <div class="row">
@@ -79,6 +84,22 @@ function moveSlideshowToIndex (element, total, index) {
   const n = index % total * -1
   element.style.transform = `translateX(${n * 100}%)`;
 }
+
+
+
+const socket_ntf = new WebSocket(
+    'ws://'
+    + window.location.host
+    + '/ws/'
+    + 'notify'
+    + '/'
+);
+
+
+socket.onopen = function(e){
+    console.log("CONNECTION ESTABLISHED NOTIFY");
+}
+
 
 
 function slideshow({ selector, initialIndex, autoscroll }) {

@@ -17,7 +17,7 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 
 from channels.auth import AuthMiddlewareStack
 
-from chats.consumers import PersonalChatConsumer
+from chats.consumers import PersonalChatConsumer, NotifyNewMessage
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'chat.settings')
 
