@@ -1,5 +1,4 @@
 from django.contrib.auth.hashers import check_password
-
 from .models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -15,7 +14,6 @@ def index_main(request):
     return render(request, 'main/main.html', {'request': request, 'user': user})
 
 
-# TODO: смена пароля, аватара
 def view_my_profile(request):
     user = User.objects.get(id=request.user.id)
     if request.method == 'POST':
@@ -27,14 +25,14 @@ def view_my_profile(request):
             if check_password(cd['old_passwd'], user.password):
                 if cd['passwd'] == cd['passwd1']:
                     print('ееее, типо сменил пароль, типа умный да да я')
+                    user.set_password(cd['passwd'])
             else:
-                print('неверный пароль')
+                return HttpResponse('Ошибка пароля')
     else:
         form = UpdateUserForm()
     return render(request, 'main/profile.html', {'request': request, 'user': user, 'form': form})
 
 
-# TODO: сделать редиректы на нужные страницы
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -44,11 +42,11 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponse('Authenticated successfully')
+                    return redirect('index')
                 else:
                     return HttpResponse('Disabled account')
             else:
-                return HttpResponse('Invalid login')
+                return redirect('index')
     else:
         form = LoginForm()
     return render(request, 'main/login.html', {'form': form})
@@ -65,5 +63,14 @@ def view_another_profile(request, pk):
     except User.DoesNotExist:
         return HttpResponse('дурак?')
 
+    print(user_me.position.access_level)
+    print(user.position.access_level)
 
-    # if user_me.position.access_level
+    if user_me.position.access_level > user.position.access_level:
+        print('НЕТ ПРАВ!!!')
+        return HttpResponse('НЕТ ПРАВ!!!')
+
+    else:
+        print('збс')
+        return HttpResponse('збс')
+

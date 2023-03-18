@@ -3,8 +3,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 choices = (
-    ('Главный', '1'),
-    ('Не главный', '2'),
+    (1, 'Главный'),
+    (2, 'Не главный'),
 )
 
 
@@ -20,6 +20,8 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['username']
 
 
+
+
 class Department(models.Model):
     name = models.CharField(max_length=50, verbose_name='Название отдела')
 
@@ -29,7 +31,7 @@ class Department(models.Model):
 
 class Position(models.Model):
     name = models.CharField(max_length=50, verbose_name='Название должности')
-    access_level = models.IntegerField(verbose_name='Уровень доступа')
+    access_level = models.IntegerField(verbose_name='Уровень доступа', choices=choices)
 
 
     def __str__(self):
