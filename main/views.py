@@ -1,5 +1,6 @@
 from django.contrib.auth.hashers import check_password
 
+from chats import Aes
 from .models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -40,6 +41,8 @@ def user_login(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
+            aes = Aes()
+            key_aes = aes.get_key_aes()
             user = authenticate(username=cd['email'], password=cd['password'])
             if user is not None:
                 if user.is_active:
