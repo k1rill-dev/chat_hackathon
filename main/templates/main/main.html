@@ -14,14 +14,14 @@
         <figure>
             <a href="{% url 'my_p' %}">
                 <img src="{{ user.avatar.url }}" alt="Avatar" class="avatar">
-                <figcaption >{{ request.user.first_name }} {{ request.user.last_name }}</figcaption>
+                <figcaption>{{ request.user.first_name }} {{ request.user.last_name }}</figcaption>
             </a>
         </figure>
         <h2>Corporative Chat</h2>
         <div class="navbar">
             <div class="button">
                 <i class="fas fa-comment" ></i>
-                <span class="button__badge">5</span>
+                <span class="button__badge">{{count_msg}}</span>
             </div>
         </div>
 </div>
@@ -85,20 +85,6 @@ function moveSlideshowToIndex (element, total, index) {
   element.style.transform = `translateX(${n * 100}%)`;
 }
 
-
-
-const socket_ntf = new WebSocket(
-    'ws://'
-    + window.location.host
-    + '/ws/'
-    + 'notify'
-    + '/'
-);
-
-
-socket.onopen = function(e){
-    console.log("CONNECTION ESTABLISHED NOTIFY");
-}
 
 
 

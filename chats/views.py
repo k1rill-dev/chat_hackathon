@@ -5,7 +5,6 @@ from chat.settings import MEDIA_ROOT
 from chats.forms import ResumeForm
 from chats.models import ChatModel
 
-# Create your views here.
 
 
 User = get_user_model()
@@ -28,11 +27,16 @@ def chatPage(request, username):
     else:
         form = ResumeForm
     if request.user.id > user_obj.id:
+        print(11111111111)
         thread_name = f'chat_{request.user.id}-{user_obj.id}'
+
     else:
         thread_name = f'chat_{user_obj.id}-{request.user.id}'
+        print(123132123)
 
     message_objs = ChatModel.objects.filter(thread_name=thread_name)
+    ChatModel.objects.all().update(is_read=1)
+
     print(MEDIA_ROOT)
     return render(request, 'main_chat.html',
                   context={'user': user_obj, 'users': users, 'messages': message_objs, 'form': form,

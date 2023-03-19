@@ -2,6 +2,7 @@ from django.contrib.auth.hashers import check_password
 
 from chats import Aes
 from .models import User
+from chats.models import ChatModel
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
@@ -11,9 +12,10 @@ from .forms import LoginForm, UpdateUserForm
 def index_main(request):
     try:
         user = User.objects.get(id=request.user.id)
+        count_msg = len(ChatModel.objects.filter(is_read=0))
     except User.DoesNotExist:
         return redirect('login')
-    return render(request, 'main/main.html', {'request': request, 'user': user})
+    return render(request, 'main/main.html', {'request': request, 'user': user, 'count_msg': count_msg})
 
 
 # TODO: смена пароля, аватара

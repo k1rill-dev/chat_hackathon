@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}WhatsApp{% endblock %}
+{% block title %}sdf{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
@@ -62,12 +62,20 @@
                 <div class="contact-table-scroll">
                     <table class="table table-hover">
                         <tbody>
-                        {% for user in users %}
+                        {% for user1 in users %}
+                        {% if user_no_read == user1 %}
                         <tr>
                             <td><img src="{% static 'assets/dp.png' %}" alt="" class="profile-image rounded-circle">
                             </td>
-                            <td><a href="{% url 'chat' username=user.username %}">{{user.username}}</a></td>
+                            <td><a href="{% url 'chat' username=user.username %}">{{user1.username}}    sdf</a></td>
                         </tr>
+                        {% else %}
+                        <tr>
+                            <td><img src="{% static 'assets/dp.png' %}" alt="" class="profile-image rounded-circle">
+                            </td>
+                            <td><a href="{% url 'chat' username=user.username %}">{{user1.username}}</a></td>
+                        </tr>
+                        {% endif %}
                         {% endfor %}
 
                         <!-- end -->

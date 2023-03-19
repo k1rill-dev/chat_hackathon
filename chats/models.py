@@ -19,6 +19,7 @@ class ChatModel(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     # file_id = models.OneToOneField(FileMessage, on_delete=models.CASCADE, null=True)
     type_msg = models.CharField(null=True, blank=True, max_length=10)
+    is_read = models.BooleanField(default=True)
 
     def __str__(self) -> str:
         return self.message

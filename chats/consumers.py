@@ -63,7 +63,7 @@ class PersonalChatConsumer(AsyncWebsocketConsumer):
     @database_sync_to_async
     def save_message(self, username, thread_name, message, type_msg):
         ChatModel.objects.create(
-            sender=username, message=message, thread_name=thread_name, type_msg=type_msg)
+            sender=username, message=message, thread_name=thread_name, type_msg=type_msg, is_read=False)
 
 
 class NotifyNewMessage(AsyncWebsocketConsumer):
@@ -81,9 +81,21 @@ class NotifyNewMessage(AsyncWebsocketConsumer):
         #     self.room_group_name,
         #     self.channel_name
         # )
-
+        self.notifications = ChatModel.objects.all()
         await self.accept()
 
+    def receive(self, text_data):
+        text_data_json = json.loads(text_data)
+        message = text_data_json['message']
+        self.send(text_data=json.dumps({
+            'message': message
+        }))
+
+    def new_notification(self, event):
+        notification = event['notification']
+        self.send(text_data=json.dumps({
+            'message': notification.content
+        }))
     # async def receive(self, text_data=None, bytes_data=None):
     #     data = json.loads(text_data)
     #
