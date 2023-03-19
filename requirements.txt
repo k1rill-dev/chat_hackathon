@@ -4,4 +4,3 @@ channels-redis
 gunicorn
 Pillow
 pyaes
-psycopg2

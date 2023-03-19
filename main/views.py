@@ -15,15 +15,15 @@ def index_main(request):
         return redirect('login')
     count_msg = len(ChatModel.objects.filter(is_read=0))
 
-    # fir, sec, thrd = News.objects.all()[:3]
-    # fp, sp, tp = PictureForNews.objects.get(news=fir), PictureForNews.objects.get(news=sec), PictureForNews.objects.get(news=thrd)
+    fir, sec, thrd = News.objects.all()[:3]
+    fp, sp, tp = PictureForNews.objects.get(news=fir), PictureForNews.objects.get(news=sec), PictureForNews.objects.get(news=thrd)
 
-    return render(request, 'main/main.html', {'request': request, 'user': user, 'count_msg': count_msg})
-                                              # 'sec': sec,
-                                              # 'thrd': thrd,
-                                              # 'fp': fp,
-                                              # 'sp': sp,
-                                              # 'tp': tp})
+    return render(request, 'main/main.html', {'request': request, 'user': user, 'count_msg': count_msg, 'fir':fir,
+                                              'sec': sec,
+                                              'thrd': thrd,
+                                              'fp': fp,
+                                              'sp': sp,
+                                              'tp': tp})
 
 
 def view_my_profile(request):

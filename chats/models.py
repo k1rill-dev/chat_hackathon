@@ -12,6 +12,10 @@ class FileMessage(models.Model):
         return self.file
 
 
+class TreadKey(models.Model):
+    tread = models.CharField(null=True, blank=True, max_length=50)
+    key = models.CharField(null=True, blank=True, max_length=50)
+
 class ChatModel(models.Model):
     sender = models.CharField(max_length=100, default=None)
     message = models.TextField(null=True, blank=True)
