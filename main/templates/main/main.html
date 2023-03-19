@@ -20,13 +20,18 @@
             <figcaption>{{ user.first_name }} {{ user.last_name }}</figcaption>
         </a>
     </figure>
+    <style>
+        .form-control1 {
+  display:none;
+}
+    </style>
 
     <a href=#>Corporative Chat</a>
     <a href={% url 'home' %}>
         <div class="navbar">
             <div class="button">
                 <i class="fas fa-comment" ></i>
-                <span class="button__badge">5</span>
+                <span class="button__badge">{{count_msg}}</span>
             </div>
         </div>
     </a>

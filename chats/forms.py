@@ -7,5 +7,5 @@ class ResumeForm(forms.ModelForm):
         model = FileMessage
         fields = ['file']
         widgets = {
-            'file': forms.FileInput(attrs={'accept': '.docx,.xls,.pdf,.png,.jpg'})
+            'file': forms.FileInput(attrs={'accept': '.docx,.xls,.pdf,.png,.jpg', 'class': 'form-control1'})
         }

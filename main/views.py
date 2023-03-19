@@ -1,4 +1,6 @@
 from django.contrib.auth.hashers import check_password
+
+from chats.models import ChatModel
 from .models import User, News, PictureForNews
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -11,16 +13,17 @@ def index_main(request):
         user = User.objects.get(id=request.user.id)
     except User.DoesNotExist:
         return redirect('login')
+    count_msg = len(ChatModel.objects.filter(is_read=0))
 
-    fir, sec, thrd = News.objects.all()[:3]
-    fp, sp, tp = PictureForNews.objects.get(news=fir), PictureForNews.objects.get(news=sec), PictureForNews.objects.get(news=thrd)
+    # fir, sec, thrd = News.objects.all()[:3]
+    # fp, sp, tp = PictureForNews.objects.get(news=fir), PictureForNews.objects.get(news=sec), PictureForNews.objects.get(news=thrd)
 
-    return render(request, 'main/main.html', {'request': request, 'user': user, 'fir': fir,
-                                              'sec': sec,
-                                              'thrd': thrd,
-                                              'fp': fp,
-                                              'sp': sp,
-                                              'tp': tp})
+    return render(request, 'main/main.html', {'request': request, 'user': user, 'count_msg': count_msg})
+                                              # 'sec': sec,
+                                              # 'thrd': thrd,
+                                              # 'fp': fp,
+                                              # 'sp': sp,
+                                              # 'tp': tp})
 
 
 def view_my_profile(request):
@@ -73,12 +76,18 @@ def view_another_profile(request, pk):
     except User.DoesNotExist:
         return HttpResponse('дурак?')
 
-    if request.user.is_superuser or request.user.position.access_level < user.position.access_level:
+    lvl = user.position.access_level if user.position is not None else 0
+
+    if request.user.is_superuser or request.user.position.access_level < lvl:
         if request.method == 'POST':
             form = UpdatePermissions(request.POST)
             if form.is_valid():
                 cd = form.cleaned_data
-                print(cd)
+                dep = cd['department']
+                pos = cd['position']
+                user.department = dep
+                user.position = pos
+                user.save()
         else:
             form = UpdatePermissions()
 

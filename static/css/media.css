@@ -1,0 +1,10 @@
+@media screen and (max-width: 570px) {
+  .col-sm-4, .contacts {min-height: 0px;}
+  .contact-table-scroll {height:100%;}
+  #xyi {display:inline-block;
+      background-color: white;
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+    height: 50px;}
+  #pizda {display:none;}
+}

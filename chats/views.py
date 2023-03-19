@@ -36,6 +36,7 @@ def chatPage(request, username):
         thread_name = f'chat_{user_obj.id}-{request.user.id}'
 
     message_objs = ChatModel.objects.filter(thread_name=thread_name)
+    ChatModel.objects.all().update(is_read=1)
     print(MEDIA_ROOT)
     return render(request, 'main_chat.html',
                   context={'user': user_obj, 'users': users, 'messages': message_objs, 'form': form,
