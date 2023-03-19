@@ -1,10 +1,13 @@
 import json
+import os
+
 from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.db import database_sync_to_async
 from chats.models import ChatModel
 
 
 # from .AES import Aes
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'chat.settings')
 
 class PersonalChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
