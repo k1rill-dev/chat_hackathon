@@ -71,7 +71,7 @@ function isValidHttpUrl(string) {
 const input = document.getElementById('message_input');
 input.addEventListener('change', (event) => {
   if(isValidHttpUrl(input.value)){
-  var sogl = confirm("sdfdsdfgdfgdf");
+  var sogl = confirm("Do you confirm that you are responsible for the link you sent?");
   if(sogl){}
   else{
   input.value = '';
@@ -99,7 +99,6 @@ document.querySelector('#chat-message-submit').onclick = function(e){
     const message_input = document.querySelector('#message_input');
     console.log('234')
     const message = message_input.value;
-
     socket.send(JSON.stringify({
         'type_msg':'text',
         'message':message,
