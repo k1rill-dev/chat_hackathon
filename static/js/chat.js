@@ -71,7 +71,7 @@ function isValidHttpUrl(string) {
 const input = document.getElementById('message_input');
 input.addEventListener('change', (event) => {
   if(isValidHttpUrl(input.value)){
-  var sogl = confirm("Ïðèêðåïëÿÿ ññûëêó íà ñòîðîííèé ðåñóðñ âû ïîëíîñòü íåñåòå îòâåòñòâåííîòü çà ëþáûå âîçìîæíûå íåãàòèâíûå ïîñëåäñòâèÿ");
+  var sogl = confirm("sdfdsdfgdfgdf");
   if(sogl){}
   else{
   input.value = '';

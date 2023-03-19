@@ -4,9 +4,8 @@ from django.shortcuts import render, redirect
 from chat.settings import MEDIA_ROOT
 from chats.forms import ResumeForm
 from chats.models import ChatModel
-
-
-
+from .AES import Aes
+from .models import TreadKey
 User = get_user_model()
 
 
@@ -37,6 +36,12 @@ def chatPage(request, username):
 
     message_objs = ChatModel.objects.filter(thread_name=thread_name)
     ChatModel.objects.all().update(is_read=1)
+    aes = Aes()
+    for i in message_objs:
+        print(TreadKey.objects.filter(tread=thread_name)[0].key)
+        print(i.message)
+        print(aes.dec_aes(i.message, TreadKey.objects.filter(tread=thread_name)[0].key))
+        i.message = aes.dec_aes(i.message, TreadKey.objects.filter(tread=thread_name)[0].key)
     print(MEDIA_ROOT)
     return render(request, 'main_chat.html',
                   context={'user': user_obj, 'users': users, 'messages': message_objs, 'form': form,

@@ -67,6 +67,14 @@ class PersonalChatConsumer(AsyncWebsocketConsumer):
     @database_sync_to_async
     def save_message(self, username, thread_name, message, type_msg):
         aes = Aes()
-        TreadKey.objects.create(tread=thread_name, key=aes.get_key_aes())
-        ChatModel.objects.create(
-            sender=username, message=message, thread_name=thread_name, type_msg=type_msg, is_read=False)
+        key = aes.get_key_aes()
+        try:
+            a = TreadKey.objects.get(tread=thread_name)
+            ChatModel.objects.create(
+                sender=username, message=aes.enc_aes(message, a.key), thread_name=thread_name, type_msg=type_msg,
+                is_read=False)
+        except:
+            TreadKey.objects.create(tread=thread_name, key=key)
+            ChatModel.objects.create(
+                sender=username, message=aes.enc_aes(message, key), thread_name=thread_name, type_msg=type_msg,
+                is_read=False)
